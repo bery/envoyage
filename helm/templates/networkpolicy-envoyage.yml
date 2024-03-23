@@ -15,6 +15,10 @@ spec:
       - ipBlock:
           cidr: '0.0.0.0/0'
           except: ['10.0.3.0/24']
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: redis
   egress:
     - to:
       - podSelector: {}
