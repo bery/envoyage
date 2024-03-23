@@ -16,12 +16,5 @@ spec:
           cidr: '0.0.0.0/0'
           except: ['10.0.3.0/24']
   egress:
-    - to:
-      - ipBlock:
-          cidr: '0.0.0.0/0'
-          except: ['10.0.3.0/24']
-    - to:
-      - namespaceSelector:
-          matchLabels:
-            kubernetes.io/metadata.name: {{ .Release.Namespace }}
+    - {}
 {{ end -}}
