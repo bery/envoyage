@@ -17,7 +17,7 @@ images:
 dev:
   api:
     labelSelector:
-      app: kad
+      app: envoyage
     namespace: api
     container: app
     command: ["air"]

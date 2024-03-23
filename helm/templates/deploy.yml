@@ -6,11 +6,11 @@ spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: kad
+      app: envoyage
   template:
     metadata:
       labels:
-        app: kad
+        app: envoyage
     spec:
       containers:
       - name: app
