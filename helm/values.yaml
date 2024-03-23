@@ -36,7 +36,9 @@ redis:
     enabled: false
   master:
     persistence:
-      enabled: false # Disable persistence if not needed
+      enabled: false
+  networkPolicy:
+    enabled: false
 
 networkPolicy:
   enabled: false
