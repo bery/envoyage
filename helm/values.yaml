@@ -1,6 +1,6 @@
 image: docker.io/xbery/envoyage:latest
 cluster: unknown
-replicas: 2
+replicas: 1
 
 ingress:
   enabled: false
