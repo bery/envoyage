@@ -11,9 +11,5 @@ spec:
     - Ingress
     - Egress
   ingress:
-    - from:
-      - podSelector: {}
-  egress:
-    - to:
-      - podSelector: {}
+    - {}
 {{ end -}}
