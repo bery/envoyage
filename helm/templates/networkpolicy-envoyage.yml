@@ -20,8 +20,5 @@ spec:
           matchLabels:
             app.kubernetes.io/name: redis
   egress:
-    - to:
-      - podSelector:
-          matchLabels:
-            app.kubernetes.io/name: redis
+    - {}
 {{ end -}}
