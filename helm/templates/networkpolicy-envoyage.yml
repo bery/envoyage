@@ -9,7 +9,6 @@ spec:
       app: envoyage
   policyTypes:
     - Ingress
-    - Egress
   ingress:
     - {}
 {{ end -}}
