@@ -47,4 +47,4 @@ networkPolicy:
   redis:
     enabled: false
   envoyage:
-    enabled: false
+    enabled: true
