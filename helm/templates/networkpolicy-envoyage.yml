@@ -19,5 +19,5 @@ spec:
     - to:
       - namespaceSelector:
           matchLabels:
-            kubernetes.io/metadata.name: {{ .Release.Namespace }}
+            name: {{ .Release.Namespace }}
 {{ end -}}
