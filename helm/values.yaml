@@ -37,3 +37,6 @@ redis:
   master:
     persistence:
       enabled: false # Disable persistence if not needed
+
+networkPolicy:
+  enabled: true
