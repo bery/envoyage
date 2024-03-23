@@ -39,4 +39,4 @@ redis:
       enabled: false # Disable persistence if not needed
 
 networkPolicy:
-  enabled: true
+  enabled: false
