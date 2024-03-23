@@ -16,8 +16,5 @@ spec:
           cidr: '0.0.0.0/0'
           except: ['10.0.3.0/24']
   egress: 
-    - to:
-      - namespaceSelector:
-          matchLabels:
-            name: {{ .Release.Namespace }}
+    - {}
 {{ end -}}
