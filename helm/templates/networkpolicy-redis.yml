@@ -8,7 +8,7 @@ spec:
   - Ingress
   podSelector:
     matchLabels:
-      role: redis  # This should match the labels on your Redis pods
+      app.kubernetes.io/name: redis
   ingress:
   - from:
     - podSelector:
