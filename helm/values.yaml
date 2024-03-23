@@ -45,6 +45,6 @@ networkPolicy:
   default:
     enabled: true
   redis:
-    enabled: true
+    enabled: false
   envoyage:
-    enabled: true
+    enabled: false
