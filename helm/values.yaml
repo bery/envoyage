@@ -11,7 +11,7 @@ service:
   ipFamilyPolicy: PreferDualStack
   # enable cilium global service
   global: true
-  port: 8080
+  port: 8000
 
 rbac:
   enabled: true
