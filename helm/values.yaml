@@ -32,7 +32,8 @@ redis:
   enabled: true
   fullnameOverride: "redis"
   architecture: standalone
+  auth:
+    enabled: false
   master:
     persistence:
       enabled: false # Disable persistence if not needed
-  usePassword: false # For demonstration purposes; consider security implications
