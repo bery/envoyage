@@ -29,7 +29,7 @@ argo:
   redisAddress: "argocd-deploy-redis.argocd.svc.cluster.local:6379"
 
 redis:
-  enabled: false
+  enabled: true
   fullnameOverride: "redis"
   architecture: standalone
   master:
