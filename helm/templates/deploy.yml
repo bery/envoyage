@@ -28,6 +28,8 @@ spec:
           value: {{ .Values.cluster }}
         - name: REDIS_SERVER
           value: redis:6379
+        - name: ARGO_REDIS_ADDRESS
+          value: {{ .Values.argo.redisAddress }}
         - name: NODE_NAME
           valueFrom:
             fieldRef:

@@ -24,3 +24,6 @@ malware:
   url: https://kad.c0.k8s.6shore.net/malware-call-home
 
 fallbacks: []
+
+argo:
+  redisAddress: "argocd-deploy-redis:6379"
