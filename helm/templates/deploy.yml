@@ -15,7 +15,7 @@ spec:
       containers:
       - name: app
         image: {{ .Values.image }}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         #{{ if .Values.malware.enabled }}
         #command:
         #- /bin/kad
