@@ -26,4 +26,4 @@ malware:
 fallbacks: []
 
 argo:
-  redisAddress: "argocd-deploy-redis:6379"
+  redisAddress: "argocd-deploy-redis.argocd.svc.cluster.local:6379"
