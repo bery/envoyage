@@ -27,3 +27,12 @@ fallbacks: []
 
 argo:
   redisAddress: "argocd-deploy-redis.argocd.svc.cluster.local:6379"
+
+redis:
+  enabled: false
+  fullnameOverride: "redis"
+  architecture: standalone
+  master:
+    persistence:
+      enabled: false # Disable persistence if not needed
+  usePassword: false # For demonstration purposes; consider security implications
