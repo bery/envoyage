@@ -1,0 +1,11 @@
+images:
+    api:
+        imageConfigHash: bd53b33abe62762dff45664837242f9352aefc41fb666c5ae68fb4e435c6f67b
+        dockerfileHash: 751b23067130ac1f74619793107e466be1e15b09c46e79c9bf7a6431601677b1
+        contextHash: 3c283ab9695a31b92aeee2fbcf21952d4aaa9ef4174d6a5a6a279b80be09ad25
+        imageName: docker.io/tomkukral/kad
+        localRegistryImageName: localhost:31028/tomkukral/kad
+        tag: qjaYgok
+lastContext:
+    namespace: api
+    context: docker-desktop

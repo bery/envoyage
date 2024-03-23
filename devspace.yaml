@@ -1,0 +1,39 @@
+name: api
+version: v2beta1
+
+require:
+  devspace: '6.3.12'
+
+localRegistry:
+  enabled: true
+
+images:
+  api:
+    image: docker.io/xbery/kad
+    dockerfile: Dockerfile
+    context: .
+    target: base
+
+dev:
+  api:
+    labelSelector:
+      app: kad
+    namespace: api
+    container: app
+    command: ["air"]
+    sync:
+      - path: ./:/app
+        downloadExcludePaths: ["tmp"]
+        onUpload:
+          restartContainer: true
+    logs:
+      lastLines: 100
+
+deployments:
+  api:
+    namespace: api
+    helm:
+      chart:
+        name: ./helm
+      values:
+        image: docker.io/xbery/kad
