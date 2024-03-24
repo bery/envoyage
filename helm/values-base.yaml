@@ -12,7 +12,7 @@ service:
   port: 80
 
 rbac:
-  enabled: true
+  enabled: false
   cluster:
     enabled: true
 
@@ -34,10 +34,10 @@ podSecurityContext:
 redis:
   enabled: true
   networkPolicy:
-    enabled: true
+    enabled: false
 
 networkPolicy:
-  enabled: true
+  enabled: false
   default:
     enabled: true
   redis:
@@ -46,15 +46,15 @@ networkPolicy:
     enabled: true
 
 externalSecrets:
-  enabled: true
+  enabled: false
 
 aws:
   region: eu-central-1
 
 serviceAccount:
-  create: true
+  create: false
   role_arn: arn:aws:iam::339713039480:role/envoyage
 
 namespace:
-  create: true
-  podSecurityPolicyEnforce: baseline
+  create: false
+  podSecurityPolicyEnforce: ""

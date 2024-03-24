@@ -4,9 +4,6 @@ metadata:
   name: {{ .Release.Name }}-envoyage
   annotations:
     prometheus.io/scrape: "{{ .Values.prometheus.enabled }}"
-    {{- if .Values.service.global }}
-    service.cilium.io/global: "true"
-    {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ipFamilyPolicy: {{ .Values.service.ipFamilyPolicy }}

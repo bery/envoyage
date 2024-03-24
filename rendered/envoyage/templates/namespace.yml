@@ -1,0 +1,6 @@
+---
+# Source: envoyage/templates/namespace.yml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: envoyage-0

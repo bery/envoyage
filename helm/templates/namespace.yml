@@ -3,6 +3,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: {{ .Release.Namespace }}
-  #labels:
-   # pod-security.kubernetes.io/enforce: {{ .Values.namespace.podSecurityPolicyEnforce }}
+  {{ if .Values.podSecurityPolicyEnforce }}
+  labels:
+   pod-security.kubernetes.io/enforce: {{ .Values.namespace.podSecurityPolicyEnforce }}
+  {{ end }}
 {{- end }}
