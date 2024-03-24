@@ -16,6 +16,8 @@ spec:
     spec:
       {{ if .Values.serviceAccount.create }}
       serviceAccountName: {{ .Chart.Name }}
+      {{ else }}
+      serviceAccountName: default
       {{ end }}
       containers:
       - name: app
