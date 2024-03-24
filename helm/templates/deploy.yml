@@ -43,7 +43,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        {{ if and .Values.externalSecrets.enabled (.Values.serviceAccount.create) }}
+        {{ if and .Values.externalSecrets.enabled (not .Values.serviceAccount.create) }}
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
