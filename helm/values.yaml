@@ -59,4 +59,4 @@ serviceAccount:
 
 namespace:
   create: true
-  podSecurityEnforce: baseline
+  podSecurityPolicyEnforce: baseline
