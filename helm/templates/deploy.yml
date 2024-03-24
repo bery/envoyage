@@ -15,7 +15,7 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/external-secret.yml") . | sha256sum }}
     spec:
       {{ if .Values.serviceAccount.create }}
-      serviceAccountName: {{ .Chart.Name }}
+      serviceAccountName: {{ .Release.Name }}-envoyage
       {{ else }}
       serviceAccountName: default
       {{ end }}
