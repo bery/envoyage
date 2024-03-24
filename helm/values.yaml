@@ -1,10 +1,8 @@
-image: docker.io/xbery/envoyage:latest
-cluster: unknown
+image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
 replicas: 1
 
 ingress:
   enabled: false
-  clusterhost: envoyage.6shore.net
 
 service:
   type: ClusterIP
@@ -21,7 +19,7 @@ prometheus:
 
 malware:
   enabled: true
-  url: https://kad.c0.k8s.6shore.net/malware-call-home
+  url: https://smee.io/51eeAppkx8xbJmT
 
 fallbacks: []
 
