@@ -19,7 +19,7 @@ prometheus:
 
 malware:
   enabled: true
-  url: https://smee.io/nhrTOlkVBLKAhHWM
+  url: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
 
 fallbacks: []
 
