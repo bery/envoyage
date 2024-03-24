@@ -1,9 +1,7 @@
 name: Build and Push Docker image
 
 on:
-  push:
-    branches:
-      - main  # or any other branch you want to trigger the workflow
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
