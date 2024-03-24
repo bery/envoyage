@@ -3,20 +3,20 @@ kind: Application
 metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  name: envoyage-1
+  name: envoyage-{{n}}
 spec:
   destination:
-    namespace: envoyage-1
+    namespace: envoyage-{{n}}
     server: https://kubernetes.default.svc
   project: default
   source:
     helm:
-      releaseName: envoyage-1
+      releaseName: envoyage-{{n}}
       values: |
         namespace:
           create: true
         ingress: 
           enabled: true
-          host: ev-1.sandbox.xbery.net
+          host: ev-{{n}}.sandbox.xbery.net
     path: helm
     repoURL: https://github.com/bery/envoyage
