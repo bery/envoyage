@@ -26,8 +26,6 @@ spec:
         ports:
         - containerPort: 8000
         env:
-        - name: CLUSTER
-          value: {{ .Values.cluster }}
         - name: AWS_REGION
           value: {{ .Values.aws.region }}
         - name: REDIS_SERVER
