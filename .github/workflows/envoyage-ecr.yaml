@@ -1,4 +1,4 @@
-name: Build exaforce plugin image
+name: Build envoyage image
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
