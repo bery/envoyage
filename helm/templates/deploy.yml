@@ -50,7 +50,7 @@ spec:
           httpGet:
             path: /check/ready
             port: 8000
-          initialDelaySeconds: 1
+          initialDelaySeconds: 5
           periodSeconds: 5
           successThreshold: 1
           failureThreshold: 3
