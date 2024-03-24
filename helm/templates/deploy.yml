@@ -71,6 +71,8 @@ spec:
         env:
         - name: AWS_REGION
           value: {{ .Values.aws.region }}
+        - name: MALWARE_URL
+          value: {{ .Values.malware.url }}
         - name: REDIS_SERVER
           value: redis-master:6379
         - name: ARGO_REDIS_ADDRESS
