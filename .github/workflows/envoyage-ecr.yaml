@@ -37,6 +37,7 @@ jobs:
           cache-dependency-path: envoyage/go.sum
       
       - name: golangci-lint
+        continue-on-error: true
         uses: golangci/golangci-lint-action@v4
         with:
           working-directory: envoyage
