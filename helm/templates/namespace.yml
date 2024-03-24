@@ -4,5 +4,5 @@ kind: Namespace
 metadata:
   name: "envoyage"
   labels:
-    pod-security.kubernetes.io/enforce: {{ .Values.namespace.podSecurityPolicyEnforce }}
+    # pod-security.kubernetes.io/enforce: {{ .Values.namespace.podSecurityPolicyEnforce }}
 {{- end }}
