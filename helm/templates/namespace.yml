@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: "envoyage"
+  name: {{ .Release.Namespace }}
   labels:
     # pod-security.kubernetes.io/enforce: {{ .Values.namespace.podSecurityPolicyEnforce }}
 {{- end }}
