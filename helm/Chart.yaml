@@ -21,9 +21,3 @@ version: 0.2.1
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: 0.0.0
-
-dependencies:
-  - name: redis
-    version: "19.0.x" # Use the specific version you need, e.g., "14.8.8"
-    repository: "https://charts.bitnami.com/bitnami"
-    condition: redis.enabled
