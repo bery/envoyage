@@ -47,7 +47,7 @@ networkPolicy:
   envoyage:
     enabled: true
 
-externalSecret:
+externalSecrets:
   enabled: true
 
 aws:
