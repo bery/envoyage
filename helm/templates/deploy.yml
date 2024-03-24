@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: envoyage
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/external-secret.yml") . | sha256sum }}
     spec:
       containers:
       - name: app
