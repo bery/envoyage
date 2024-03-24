@@ -28,15 +28,8 @@ argo:
 
 redis:
   enabled: true
-  fullnameOverride: "redis"
-  architecture: standalone
-  auth:
-    enabled: false
-  master:
-    persistence:
-      enabled: false
   networkPolicy:
-    enabled: false
+    enabled: true
 
 networkPolicy:
   enabled: true
