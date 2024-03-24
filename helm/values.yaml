@@ -28,6 +28,9 @@ fallbacks: []
 argo:
   redisAddress: "argocd-deploy-redis.argocd.svc.cluster.local:6379"
 
+podSecurityContext:
+  enabled: false
+
 redis:
   enabled: true
   networkPolicy:
