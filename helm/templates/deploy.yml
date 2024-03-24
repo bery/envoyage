@@ -26,6 +26,14 @@ spec:
         #- /bin/kad
         #- --malware-url "{{ .Values.malware.url }}"
         #{{ end }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: [ALL]
+          seccompProfile:
+            type: RuntimeDefault
+          procMount: Default
+          readOnlyRootFilesystem: true
         ports:
         - containerPort: 8000
         resources:
@@ -77,6 +85,22 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         {{ if and .Values.externalSecrets.enabled (not .Values.serviceAccount.create) }}
         - name: AWS_ACCESS_KEY_ID
           valueFrom:

@@ -56,3 +56,7 @@ aws:
 serviceAccount:
   create: true
   role_arn: arn:aws:iam::339713039480:role/envoyage
+
+namespace:
+  create: true
+  podSecurityEnforce: baseline
