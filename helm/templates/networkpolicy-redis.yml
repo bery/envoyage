@@ -14,4 +14,7 @@ spec:
     - podSelector:
         matchLabels:
           app: envoyage
+    ports:
+    - protocol: TCP
+      port: 6379
 {{ end -}}

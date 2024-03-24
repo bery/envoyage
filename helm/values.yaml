@@ -46,3 +46,9 @@ networkPolicy:
     enabled: true
   envoyage:
     enabled: true
+
+externalSecret:
+  enabled: true
+
+aws:
+  region: eu-central-1

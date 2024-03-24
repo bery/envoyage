@@ -26,6 +26,8 @@ spec:
         env:
         - name: CLUSTER
           value: {{ .Values.cluster }}
+        - name: AWS_REGION
+          value: {{ .Values.aws.region }}
         - name: REDIS_SERVER
           value: redis-master:6379
         - name: ARGO_REDIS_ADDRESS
@@ -38,3 +40,15 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        {{ if .Values.externalSecrets.enabled }}
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: envoyage-aws-credentials
+              key: aws-access-key-id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: envoyage-aws-credentials
+              key: aws-secret-access-key
+        {{ end }}
