@@ -28,6 +28,40 @@ spec:
         #{{ end }}
         ports:
         - containerPort: 8000
+        resources:
+          limits:
+            cpu: 50m
+            memory: 64Mi
+        livenessProbe:
+          httpGet:
+            path: /check/live
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /check/ready
+            port: 8000
+          initialDelaySeconds: 1
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /check/ready
+            port: 8000
+            scheme: HTTP
+          failureThreshold: 5
+          periodSeconds: 2
+          successThreshold: 1
+        lifecycle:
+          postStart:
+            exec:
+              command: ["sh", "-c", "date > /tmp/started"]
+          preStop:
+            httpGet:
+              path: "/action/terminate"
+              port: 5001
         env:
         - name: AWS_REGION
           value: {{ .Values.aws.region }}
