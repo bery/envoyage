@@ -46,8 +46,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: envoyage
-          file: Dockerfile
+          context: .
+          file: envoyage/Dockerfile
           push: ${{ env.PUSH }}
           tags: 339713039480.dkr.ecr.us-east-2.amazonaws.com/cloudquery:${{ github.sha }}
           platforms: linux/arm64
