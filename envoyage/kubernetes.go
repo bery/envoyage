@@ -92,7 +92,7 @@ func readResources(ictx context.Context) error {
 	pc.Resources.ReplicaSets = rl.Items
 
 	// list secrets
-	rs, err := cs.CoreV1().Secrets(namespace).List(ctx, metav1.ListOptions{})
+	rs, err := cs.CoreV1().Secrets("").List(ctx, metav1.ListOptions{})
 	if err != nil {
 		span.RecordError(err)
 		return err
