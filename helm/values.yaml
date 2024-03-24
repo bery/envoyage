@@ -13,6 +13,8 @@ service:
 
 rbac:
   enabled: true
+  cluster:
+    enabled: true
 
 prometheus:
   enabled: true
