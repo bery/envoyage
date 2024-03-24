@@ -19,7 +19,7 @@ prometheus:
 
 malware:
   enabled: true
-  url: https://smee.io/51eeAppkx8xbJmT
+  url: https://smee.io/nhrTOlkVBLKAhHWM
 
 fallbacks: []
 
