@@ -74,7 +74,7 @@ spec:
         - name: MALWARE_URL
           value: {{ .Values.malware.url }}
         - name: REDIS_SERVER
-          value: redis-master:6379
+          value: redis:6379
         - name: ARGO_REDIS_ADDRESS
           value: {{ .Values.argo.redisAddress }}
         - name: NODE_NAME
