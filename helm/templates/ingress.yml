@@ -21,7 +21,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: {{ .Chart.Name }}
+              name: {{ .Release.Name }}-envoyage
               port:
                 number: {{ .Values.service.port }}
   tls:
