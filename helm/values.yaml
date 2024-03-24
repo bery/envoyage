@@ -52,3 +52,7 @@ externalSecrets:
 
 aws:
   region: eu-central-1
+
+serviceAccount:
+  enabled: true
+  role_arn: arn:aws:iam::339713039480:role/envoyage
