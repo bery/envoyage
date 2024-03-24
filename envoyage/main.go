@@ -371,7 +371,7 @@ func main() {
 			adminRouter.Handle("/metrics", promhttp.Handler())
 
 			// malware simulaiton
-			adminRouter.HandleFunc("/malware", malwareHandler)
+			r.HandleFunc("/malware", malwareHandler)
 
 			// log requests
 			loggedRouter := handlers.LoggingHandler(os.Stdout, responseTime(r))

@@ -24,6 +24,20 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
+      
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: envoyage/Dockerfile
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+          cache-dependency-path: envoyage/go.sum
+      
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v4
+  
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 

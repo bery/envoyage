@@ -23,8 +23,6 @@ malware:
   enabled: true
   url: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
 
-fallbacks: []
-
 argo:
   redisAddress: "argocd-deploy-redis.argocd.svc.cluster.local:6379"
 

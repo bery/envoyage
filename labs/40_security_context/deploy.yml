@@ -14,7 +14,7 @@ spec:
       labels:
         app: envoyage
       annotations:
-        checksum/config: f76bac198a5f324718c3190ae91fe6677763d63929226ee07c63daf05d7b435b
+        checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     spec:
       serviceAccountName: envoyage-1-envoyage
       containers:
@@ -24,6 +24,11 @@ spec:
         ports:
         - containerPort: 8000
         - containerPort: 8001
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: [ALL]
+          readOnlyRootFilesystem: true
         resources:
           limits:
             cpu: 50m

@@ -1,29 +1,11 @@
-image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
-replicas: 1
-
 ingress:
-  enabled: false
-
-service:
-  type: ClusterIP
-  ipFamilyPolicy: PreferDualStack
-  # enable cilium global service
-  global: true
-  port: 80
+  enabled: true
+  host: ev-0.sandbox.xbery.net
 
 rbac:
   enabled: false
   cluster:
     enabled: true
-
-prometheus:
-  enabled: true
-
-malware:
-  enabled: true
-  url: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
-
-fallbacks: []
 
 argo:
   redisAddress: "argocd-deploy-redis.argocd.svc.cluster.local:6379"
@@ -47,9 +29,6 @@ networkPolicy:
 
 externalSecrets:
   enabled: false
-
-aws:
-  region: eu-central-1
 
 serviceAccount:
   create: false

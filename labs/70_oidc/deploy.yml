@@ -1,9 +1,11 @@
+---
+# Source: envoyage/templates/deploy.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: envoyage
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       app: envoyage
@@ -12,27 +14,21 @@ spec:
       labels:
         app: envoyage
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/external-secret.yml") . | sha256sum }}
+        checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     spec:
-      {{ if .Values.serviceAccount.create -}}
-      serviceAccountName: {{ .Release.Name }}-envoyage
-      {{ else -}}
-      serviceAccountName: default
-      {{ end -}}
+      serviceAccountName: envoyage-{{n}}-envoyage
       containers:
       - name: app
-        image: {{ .Values.image }}
+        image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
         imagePullPolicy: Always
-        {{ if .Values.podSecurityContext.enabled -}}
+        ports:
+        - containerPort: 8000
+        - containerPort: 8001
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
             drop: [ALL]
           readOnlyRootFilesystem: true
-        {{ end -}}
-        ports:
-        - containerPort: 8000
-        - containerPort: 8001
         resources:
           limits:
             cpu: 50m
@@ -60,22 +56,23 @@ spec:
           periodSeconds: 5
           successThreshold: 1
         lifecycle:
-          postStart:
-            exec:
-              command: ["sh", "-c", "date > /tmp/started"]
           preStop:
             httpGet:
               path: "/action/terminate"
               port: 8001
         env:
         - name: AWS_REGION
-          value: {{ .Values.aws.region }}
+          value: eu-central-1
         - name: MALWARE_URL
-          value: {{ .Values.malware.url }}
+          value: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
         - name: REDIS_SERVER
           value: redis:6379
         - name: ARGO_REDIS_ADDRESS
-          value: {{ .Values.argo.redisAddress }}
+          value: argocd-deploy-redis.argocd.svc.cluster.local:6379
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
         - name: NAMESPACE
           valueFrom:
             fieldRef:
@@ -96,15 +93,3 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        {{ if and .Values.externalSecrets.enabled (not .Values.serviceAccount.create) }}
-        - name: AWS_ACCESS_KEY_ID
-          valueFrom:
-            secretKeyRef:
-              name: envoyage-aws-credentials
-              key: aws-access-key-id
-        - name: AWS_SECRET_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: envoyage-aws-credentials
-              key: aws-secret-access-key
-        {{ end }}

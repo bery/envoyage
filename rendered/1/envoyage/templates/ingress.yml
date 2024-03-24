@@ -1,0 +1,31 @@
+---
+# Source: envoyage/templates/ingress.yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: envoyage
+  annotations:
+    # ALB Ingress Controller specific annotations
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-central-1:339713039480:certificate/32db8490-c1f5-4d60-ad71-0f6b7e41d55a
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: "xbery-sandbox"
+spec:
+  ingressClassName: alb
+  rules:
+  - host: "ev-1.sandbox.xbery.net"
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: ev-1-envoyage
+              port:
+                number: 80
+  tls:
+  - hosts:
+    - "ev-1.sandbox.xbery.net"
+    secretName: envoyage-ssl-cert
