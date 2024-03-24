@@ -63,9 +63,9 @@ spec:
           periodSeconds: 5
           successThreshold: 1
         lifecycle:
-          # postStart:
-          #   exec:
-          #     command: ["sh", "-c", "date > /tmp/started"]
+          postStart:
+            exec:
+              command: ["sh", "-c", "date > /tmp/started"]
           preStop:
             httpGet:
               path: "/action/terminate"
