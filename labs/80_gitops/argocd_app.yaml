@@ -1,0 +1,24 @@
+project: default
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: envoyage-0
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+  syncOptions:
+    - CreateNamespace=false
+sources:
+  - repoURL: 'https://github.com/bery/envoyage'
+    targetRevision: main
+    ref: values
+  - repoURL: 'https://github.com/bery/envoyage'
+    path: helm
+    helm:
+      valueFiles:
+        - $values/deployment/values.yaml
+      releaseName: envoyage-0
+      values: |
+        ingress: 
+          enabled: true
+          host: ev-0.sandbox.xbery.net
