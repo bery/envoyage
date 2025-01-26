@@ -6,7 +6,6 @@ var rootPage = `
 
 <head>
 <title>Kubernetes app demo</title>
-<meta http-equiv="refresh" content="5">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <style>
 td {
