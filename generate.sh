@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Number of times the command will be executed
-repeat_times=7
+repeat_times=8
 
 # Loop and execute the command
 for i in $(seq 1 $repeat_times); do

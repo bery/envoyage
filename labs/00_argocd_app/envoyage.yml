@@ -6,12 +6,12 @@ metadata:
   name: envoyage-{{n}}
 spec:
   destination:
-    namespace: envoyage-{{n}}
+    namespace: envoyage-9
     server: https://kubernetes.default.svc
   project: default
   source:
     helm:
-      releaseName: envoyage-{{n}}
+      releaseName: envoyage-9
       values: |
         namespace:
           create: true

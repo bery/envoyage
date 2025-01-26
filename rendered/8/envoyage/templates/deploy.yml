@@ -1,0 +1,98 @@
+---
+# Source: envoyage/templates/deploy.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envoyage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: envoyage
+  template:
+    metadata:
+      labels:
+        app: envoyage
+      annotations:
+        checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    spec:
+      serviceAccountName: envoyage-8-envoyage
+      containers:
+      - name: app
+        image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        - containerPort: 8001
+        securityContext:
+          allowPrivilegeEscalation: false
+          #privileged: true
+          runAsNonRoot: true
+          runAsUser: 1001
+          runAsGroup: 1000
+          capabilities:
+            drop: [ALL]
+          readOnlyRootFilesystem: true
+        resources:
+          limits:
+            cpu: 50m
+            memory: 64Mi
+        livenessProbe:
+          httpGet:
+            path: /check/live
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /check/ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /check/ready
+            port: 8000
+            scheme: HTTP
+          failureThreshold: 5
+          periodSeconds: 5
+          successThreshold: 1
+        lifecycle:
+          # postStart:
+          #   exec:
+          #     command: ["sh", "-c", "date > /tmp/started"]
+          preStop:
+            httpGet:
+              path: "/action/terminate"
+              port: 8001
+        env:
+        - name: AWS_REGION
+          value: eu-central-1
+        - name: MALWARE_URL
+          value: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
+        - name: REDIS_SERVER
+          value: redis:6379
+        - name: ARGO_REDIS_ADDRESS
+          value: argocd-deploy-redis.argocd.svc.cluster.local:6379
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
