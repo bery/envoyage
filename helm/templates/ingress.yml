@@ -5,7 +5,7 @@ metadata:
   name: {{ .Chart.Name }}
   annotations:
     # ALB Ingress Controller specific annotations
-    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.acm.arn | quote }}
+    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.common.acm.certArn }}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/ssl-redirect: "443"
