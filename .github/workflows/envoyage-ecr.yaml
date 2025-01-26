@@ -67,5 +67,7 @@ jobs:
           context: envoyage
           file: envoyage/Dockerfile-full
           push: ${{ env.PUSH }}
-          tags: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage:${{ github.sha }}
+          tags: |
+            339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage:latest
+            339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage:${{ github.sha }}
           platforms: linux/arm64
