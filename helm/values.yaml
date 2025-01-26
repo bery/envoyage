@@ -36,7 +36,7 @@ redis:
     enabled: true
 
 networkPolicy:
-  enabled: true
+  enabled: false
   default:
     enabled: true
   redis:
