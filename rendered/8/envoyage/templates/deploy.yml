@@ -16,7 +16,7 @@ spec:
       annotations:
         checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     spec:
-      serviceAccountName: envoyage-8-envoyage
+      serviceAccountName: default
       containers:
       - name: app
         image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
@@ -24,15 +24,6 @@ spec:
         ports:
         - containerPort: 8000
         - containerPort: 8001
-        securityContext:
-          allowPrivilegeEscalation: false
-          #privileged: true
-          runAsNonRoot: true
-          runAsUser: 1001
-          runAsGroup: 1000
-          capabilities:
-            drop: [ALL]
-          readOnlyRootFilesystem: true
         resources:
           limits:
             cpu: 50m
@@ -60,9 +51,9 @@ spec:
           periodSeconds: 5
           successThreshold: 1
         lifecycle:
-          # postStart:
-          #   exec:
-          #     command: ["sh", "-c", "date > /tmp/started"]
+          postStart:
+            exec:
+              command: ["sh", "-c", "date > /tmp/started"]
           preStop:
             httpGet:
               path: "/action/terminate"
