@@ -1,6 +1,6 @@
 ingress:
   enabled: true
-  host: ev-0.sandbox.xbery.net
+  host: ev-0.sandbox.xbery.online
 
 rbac:
   enabled: false

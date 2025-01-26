@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
   name: envoyage-{{n}}
 spec:
   destination:
@@ -17,6 +17,6 @@ spec:
           create: true
         ingress: 
           enabled: true
-          host: ev-{{n}}.sandbox.xbery.net
+          host: ev-{{n}}.sandbox.xbery.online
     path: helm
     repoURL: https://github.com/bery/envoyage

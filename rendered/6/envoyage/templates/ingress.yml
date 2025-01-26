@@ -6,7 +6,7 @@ metadata:
   name: envoyage
   annotations:
     # ALB Ingress Controller specific annotations
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-central-1:339713039480:certificate/32db8490-c1f5-4d60-ad71-0f6b7e41d55a
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-central-1:339713039480:certificate/f6f0e997-a8b4-45e8-9c91-4c1a343e1ce7"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/ssl-redirect: "443"
@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: "ev-6.sandbox.xbery.net"
+  - host: "ev-6.sandbox.xbery.online"
     http:
       paths:
         - path: /
@@ -27,5 +27,5 @@ spec:
                 number: 80
   tls:
   - hosts:
-    - "ev-6.sandbox.xbery.net"
+    - "ev-6.sandbox.xbery.online"
     secretName: envoyage-ssl-cert
