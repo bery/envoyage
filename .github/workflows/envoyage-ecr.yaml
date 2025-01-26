@@ -68,7 +68,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: envoyage
-          file: envoyage/Dockerfile-full
+          file: envoyage/zzDockerfile-full
           push: ${{ env.PUSH }}
           tags: |
             339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage:latest
