@@ -1,6 +1,7 @@
 image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
 replicas: 1
-
+acm:
+  arn: arn:aws:acm:eu-central-1:339713039480:certificate/f6f0e997-a8b4-45e8-9c91-4c1a343e1ce7
 ingress:
   enabled: false
 

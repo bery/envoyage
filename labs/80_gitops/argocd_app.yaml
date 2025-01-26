@@ -1,6 +1,6 @@
 project: default
 destination:
-  server: 'https://kubernetes.default.svc'
+  server: "https://kubernetes.default.svc"
   namespace: envoyage-0
 syncPolicy:
   automated:
@@ -9,10 +9,10 @@ syncPolicy:
   syncOptions:
     - CreateNamespace=false
 sources:
-  - repoURL: 'https://github.com/bery/envoyage'
+  - repoURL: "https://github.com/bery/envoyage"
     targetRevision: main
     ref: values
-  - repoURL: 'https://github.com/bery/envoyage'
+  - repoURL: "https://github.com/bery/envoyage"
     path: helm
     helm:
       valueFiles:
@@ -21,4 +21,4 @@ sources:
       values: |
         ingress: 
           enabled: true
-          host: ev-0.sandbox.xbery.net
+          host: ev-0.sandbox.xbery.online
