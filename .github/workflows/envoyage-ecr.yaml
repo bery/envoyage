@@ -6,6 +6,9 @@ concurrency:
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 # These permissions are needed to interact with GitHub's OIDC Token endpoint.
 permissions:
   id-token: write
@@ -23,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 1
       
       - uses: hadolint/hadolint-action@v3.1.0
         continue-on-error: true
@@ -31,14 +34,14 @@ jobs:
           dockerfile: envoyage/Dockerfile
 
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: '1.21'
           cache-dependency-path: envoyage/go.sum
       
       - name: golangci-lint
         continue-on-error: true
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v6
         with:
           working-directory: envoyage
   
@@ -62,7 +65,7 @@ jobs:
           mask-password: 'false'
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: envoyage
           file: envoyage/Dockerfile-full
