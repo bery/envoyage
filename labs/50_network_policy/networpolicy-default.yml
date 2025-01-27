@@ -1,12 +1,8 @@
----
-# Source: envoyage/templates/networpolicy-default.yml
-kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
 metadata:
-  name: default-ingress-egress-deny
+  name: deny-all-except-cluster-and-private-network
 spec:
-  podSelector:
-    matchLabels: {}
+  podSelector: {}
   policyTypes:
-  - Ingress
-  - Egress
+    - Ingress
