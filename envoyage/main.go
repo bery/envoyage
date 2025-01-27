@@ -201,7 +201,6 @@ func readArgoRedis() error {
 		// use redis
 		client := redis.NewClient(&redis.Options{
 			Addr:         pc.ArgoRedisHost,
-			Password:     "hBJrsjxkPeo8oWco",
 			DialTimeout:  300 * time.Millisecond,
 			ReadTimeout:  300 * time.Millisecond,
 			WriteTimeout: 300 * time.Millisecond,
