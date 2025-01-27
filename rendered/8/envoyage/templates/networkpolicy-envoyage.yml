@@ -1,0 +1,19 @@
+---
+# Source: envoyage/templates/networkpolicy-envoyage.yml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-world-access
+spec:
+  podSelector:
+    matchLabels:
+      app: envoyage
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: "0.0.0.0/0"
+      ports:
+        - protocol: TCP
+          port: 8000
