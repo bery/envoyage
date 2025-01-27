@@ -1,15 +1,15 @@
-{{ if and .Values.redis.enabled .Values.redis.networkPolicy.enabled -}}
+---
+# Source: envoyage/templates/networkpolicy-redis.yml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: redis
+  name: allow-redis-access
 spec:
-  podSelector:
-    matchLabels:
-      app: redis
   policyTypes:
   - Ingress
-  - Egress
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: redis
   ingress:
   - from:
     - podSelector:
@@ -18,5 +18,3 @@ spec:
     ports:
     - protocol: TCP
       port: 6379
-  egress: []
-{{- end -}}

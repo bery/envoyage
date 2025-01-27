@@ -1,0 +1,23 @@
+---
+# Source: envoyage/templates/networkpolicy-envoyage.yml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: envoyage-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: envoyage
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - ipBlock:
+          cidr: '0.0.0.0/0'
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: redis
+  egress:
+    - {}
