@@ -3,18 +3,18 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-redis-access
+  name: allow-envoyage-to-redis
 spec:
-  policyTypes:
-  - Ingress
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: redis
+      app: redis
+  policyTypes:
+    - Ingress
   ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: envoyage
-    ports:
-    - protocol: TCP
-      port: 6379
+    - from:
+        - podSelector:
+            matchLabels:
+              app: envoyage
+      ports:
+        - protocol: TCP
+          port: 6379
