@@ -35,8 +35,8 @@ spec:
         - containerPort: 8001
         resources:
           limits:
-            cpu: 50m
-            memory: 64Mi
+            cpu: 100m
+            memory: 128Mi
         livenessProbe:
           httpGet:
             path: /check/live
