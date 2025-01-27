@@ -23,7 +23,7 @@ prometheus:
 
 malware:
   enabled: true
-  url: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
+  url: https://webhook.site/c0052887-360f-4fc2-b645-bf6d25d0bfb5
 
 argo:
   redisAddress: "argocd-deploy-redis.argocd.svc.cluster.local:6379"

@@ -18,88 +18,88 @@ spec:
     spec:
       serviceAccountName: envoyage-1-envoyage
       containers:
-      - name: app
-        image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8000
-        - containerPort: 8001
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop: [ALL]
-          readOnlyRootFilesystem: true
-        resources:
-          limits:
-            cpu: 50m
-            memory: 64Mi
-        livenessProbe:
-          httpGet:
-            path: /check/live
-            port: 8000
-          initialDelaySeconds: 10
-          periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /check/ready
-            port: 8000
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-        startupProbe:
-          httpGet:
-            path: /check/ready
-            port: 8000
-            scheme: HTTP
-          failureThreshold: 5
-          periodSeconds: 5
-          successThreshold: 1
-        lifecycle:
-          preStop:
+        - name: app
+          image: 339713039480.dkr.ecr.eu-central-1.amazonaws.com/envoyage
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+            - containerPort: 8001
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+            readOnlyRootFilesystem: true
+          resources:
+            limits:
+              cpu: 50m
+              memory: 64Mi
+          livenessProbe:
             httpGet:
-              path: "/action/terminate"
-              port: 8001
-        env:
-        - name: AWS_REGION
-          value: eu-central-1
-        - name: MALWARE_URL
-          value: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
-        - name: REDIS_SERVER
-          value: redis:6379
-        - name: ARGO_REDIS_ADDRESS
-          value: argocd-deploy-redis.argocd.svc.cluster.local:6379
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: HOST_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        - name: AWS_ACCESS_KEY_ID
-          valueFrom:
-            secretKeyRef:
-              name: envoyage-aws-credentials
-              key: aws-access-key-id
-        - name: AWS_SECRET_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: envoyage-aws-credentials
-              key: aws-secret-access-key
+              path: /check/live
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /check/ready
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /check/ready
+              port: 8000
+              scheme: HTTP
+            failureThreshold: 5
+            periodSeconds: 5
+            successThreshold: 1
+          lifecycle:
+            preStop:
+              httpGet:
+                path: "/action/terminate"
+                port: 8001
+          env:
+            - name: AWS_REGION
+              value: eu-central-1
+            - name: MALWARE_URL
+              value: https://webhook.site/c0052887-360f-4fc2-b645-bf6d25d0bfb5
+            - name: REDIS_SERVER
+              value: redis:6379
+            - name: ARGO_REDIS_ADDRESS
+              value: argocd-deploy-redis.argocd.svc.cluster.local:6379
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: envoyage-aws-credentials
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: envoyage-aws-credentials
+                  key: aws-secret-access-key

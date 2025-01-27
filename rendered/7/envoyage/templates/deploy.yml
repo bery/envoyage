@@ -62,7 +62,7 @@ spec:
         - name: AWS_REGION
           value: eu-central-1
         - name: MALWARE_URL
-          value: https://webhook.site/f4f111b4-3cff-44fa-915f-04b25fbb022c
+          value: https://webhook.site/c0052887-360f-4fc2-b645-bf6d25d0bfb5
         - name: REDIS_SERVER
           value: redis:6379
         - name: ARGO_REDIS_ADDRESS
